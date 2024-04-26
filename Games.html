@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaming Website</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Added Font Awesome for icons -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px 10px; /* Modified padding */
+        text-align: center;
+        font-size: 24px;
+        position: relative; /* Added position */
+    }
+    header .points {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px; /* Adjusted padding */
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px; /* Adjusted font size */
+    }
+    header p {
+        font-size: 14px; /* Adjusted font size */
+        margin-top: 10px;
+    }
+    header .instructions {
+        position: absolute;
+        top: 0;
+        left: 10px; /* Adjusted position */
+        padding: 10px;
+        background-color: #2196F3;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+    }
+    header .instructions i {
+        color: white;
+    }
+    nav {
+        background-color: #444;
+        padding: 10px 0;
+        text-align: center;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        margin: 0 5px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+        background-color: #555;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+    .game {
+        margin: 20px;
+        padding: 20px;
+        border: 2px solid #333; /* Added border color */
+        border-radius: 10px;
+        width: 300px;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    .game:hover {
+        transform: translateY(-5px);
+    }
+    .game img {
+        width: 200px;
+        height: 150px;
+        border-radius: 5px;
+        filter: saturate(150%);
+    }
+    .game h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .game p {
+        color: #666;
+        margin-bottom: 15px;
+    }
+    .game a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .game a:hover {
+        background-color: #45a049;
+    }
+    /* Style for the Frog & Cars Game */
+    #frogAndCarsGame {
+        display: none;
+        width: 100%;
+        height: 400px;
+    }
+    /* Style for the footer */
+    footer {
+        background-color: #ffffff;
+        color: #000000;
+        text-align: center;
+        padding: 20px 0;
+    }
+    footer a {
+        color: #2d4cff; /* Black text color */
+        text-decoration: none;
+    }
+    footer p {
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+    }
+    footer strong {
+        font-weight: bold; /* Make text bold */
+    }
+
+    /* Instructions modal style */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        border-radius: 10px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Thumbs up and thumbs down styles */
+    .vote {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+    .vote button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: black; /* Thumbs color changed to black */
+    }
+    .vote button:hover {
+        color: #333;
+    }
+    .vote button:focus {
+        outline: none;
+    }
+    .vote button i {
+        font-size: 24px;
+    }
+    .vote button span {
+        display: block;
+        font-size: 14px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to our Gaming Website</h1>
+        <p>Check out our YouTube channel - With animations & magic videos: <a href="https://www.youtube.com/@aWifiVideos">@aWifiVideosYoutube</a></p>
+        <div class="instructions" onclick="openInstructions()"><i class="fas fa-info"></i></div>
+        <div class="points">GAME POINTS: <span id="gamePoints">0</span></div>
+    </header>
+    <nav>
+        <a href="#games">Games</a>
+        <a href="#store">Store</a>
+    </nav>
+    <div class="container">
+        <div class="game" style="background-color: #ffc107;">
+            <h2>2 Player Football Mini Game</h2>
+            <p>Mini Football Game made for 2 Players! Last update 2024.</p>
+            <a href="soccer_game.html">Play Now</a>
+            <div class="vote" id="game1Vote">
+                <button onclick="vote('up', 'game1')"><i class="fas fa-thumbs-up"></i><span id="upVotes1">0</span></button>
+                <button onclick="vote('down', 'game1')"><i class="fas fa-thumbs-down"></i><span id="downVotes1">0</span></button>
+            </div>
+        </div>
+        <div class="game" style="background-color: #03a9f4;">
+            <h2>Frog & Cars Game</h2>
+            <p>Description of Frog & Cars Game.</p>
+            <a href="Frog_&_Cars_Game.html" >Play Now</a>
+            <div class="vote" id="game2Vote">
+                <button onclick="vote('up', 'game2')"><i class="fas fa-thumbs-up"></i><span id="upVotes2">0</span></button>
+                <button onclick="vote('down', 'game2')"><i class="fas fa-thumbs-down"></i><span id="downVotes2">0</span></button>
+            </div>
+        </div>
+        <div class="game" style="background-color: #e91e63;">
+            <h2>Coming soon...</h2>
+            <p>Coming soon...</p>
+            <a href="game3.html">Play Now</a>
+            <div class="vote" id="game3Vote">
+                <button onclick="vote('up', 'game3')"><i class="fas fa-thumbs-up"></i><span id="upVotes3">0</span></button>
+                <button onclick="vote('down', 'game3')"><i class="fas fa-thumbs-down"></i><span id="downVotes3">0</span></button>
+            </div>
+        </div>
+        <!-- Add more game divs as needed -->
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p><strong>What are GAME POINTS? Click here for instructions -> <a href="javascript:void(0);" onclick="openInstructions()">Instructions</a></strong></p>
+    </footer>
+
+    <!-- Instructions Modal -->
+    <div id="instructionsModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeInstructions()">&times;</span>
+            <h2>Instructions</h2>
+            <p>GAME POINTS are earned by spending time on our website. You will get 10 GAME POINTS for every 5 minutes spent on the website. You can use these points to buy games from our store.</p>
+        </div>
+    </div>
+
+    <script>
+        var gamePoints = 0; // Initialize points
+        var pointsDisplay = document.getElementById("gamePoints"); // Reference to points display
+
+        var votes = {}; // Object to store votes for each game
+
+        function incrementPoints() {
+            gamePoints += 10; // Increment points by 10
+            pointsDisplay.textContent = gamePoints; // Update points display
+        }
+
+        // Timer function to increment points every 5 minutes
+        setInterval(function() {
+            incrementPoints();
+        }, 5 * 60 * 1000); // 5 minutes in milliseconds
+
+        // Function to handle voting
+        function vote(type, gameId) {
+            // Check if the user has already voted for this game
+            if (votes[gameId] && votes[gameId].voted) {
+                if (confirm('You have already voted for this game. Do you want to change your vote?')) {
+                    // If the user confirms, reset their previous vote
+                    if (votes[gameId].lastVote === type) {
+                        return; // No need to update if the user selects the same vote
+                    }
+                    if (votes[gameId].lastVote === 'up') {
+                        votes[gameId].up--;
+                        document.getElementById('upVotes' + gameId.slice(-1)).textContent = votes[gameId].up;
+                    } else if (votes[gameId].lastVote === 'down') {
+                        votes[gameId].down--;
+                        document.getElementById('downVotes' + gameId.slice(-1)).textContent = votes[gameId].down;
+                    }
+                } else {
+                    return; // If the user cancels, do nothing
+                }
+            }
+
+            // Increment the corresponding vote count
+            if (!votes[gameId]) {
+                votes[gameId] = { up: 0, down: 0, voted: true };
+            }
+            if (type === 'up') {
+                votes[gameId].up++;
+                document.getElementById('upVotes' + gameId.slice(-1)).textContent = votes[gameId].up;
+            } else if (type === 'down') {
+                votes[gameId].down++;
+                document.getElementById('downVotes' + gameId.slice(-1)).textContent = votes[gameId].down;
+            }
+            votes[gameId].lastVote = type;
+
+            // Update local storage to prevent multiple votes
+            localStorage.setItem('votes', JSON.stringify(votes));
+        }
+
+        // Open instructions modal
+        function openInstructions() {
+            var modal = document.getElementById("instructionsModal");
+            modal.style.display = "block";
+        }
+
+        // Close instructions modal
+        function closeInstructions() {
+            var modal = document.getElementById("instructionsModal");
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            var modal = document.getElementById("instructionsModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Load votes from local storage
+        window.onload = function() {
+            var storedVotes = localStorage.getItem('votes');
+            if (storedVotes) {
+                votes = JSON.parse(storedVotes);
+                // Update vote counts on page load
+                for (var game in votes) {
+                    if (votes.hasOwnProperty(game)) {
+                        document.getElementById('upVotes' + game.slice(-1)).textContent = votes[game].up;
+                        document.getElementById('downVotes' + game.slice(-1)).textContent = votes[game].down;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
